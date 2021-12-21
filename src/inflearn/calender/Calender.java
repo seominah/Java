@@ -3,53 +3,44 @@ package inflearn.calender;
 import java.util.Scanner;
 
 public class Calender {
-    public static int maxDayOfMonth(int month) {
-        int[] months = new int[12];
+    private final static int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private final static int[] LEAP_MAX_DAYS = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-        for (int i = 0; i < 7; i++) {
-            if (i == 1) {
-                months[i] = 28;
-            } else if (i % 2 == 0) {
-                months[i] = 31;
-            } else {
-                months[i] = 30;
-            }
-        }
-
-        for (int i = 7; i < 12; i++) {
-            if (i % 2 == 0) {
-                months[i] = 30;
-            } else {
-                months[i] = 31;
-            }
-        }
-
-        return months[month - 1];
+    public boolean isLeapYear(int year) {
+        if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+            return true;
+        else
+            return false;
     }
 
-    public static void main(String[] args) {
-
-        // 숫자를 입력 받아 해당하는 달의 최대 일수를 출력하는 프로그램
-        // 31일 1, 3, 5, 7, 8, 10, 12
-        // 30일 4, 6, 9, 11
-        // 28일 2
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("반복횟수를 입력하세요.");
-        int repeat = scanner.nextInt();
-        int[] inputValue = new int[repeat];
-
-        System.out.println("월을 입력하세요.");
-        for (int i = 0; i < repeat; i++) {
-            inputValue[i] = scanner.nextInt();
-        }
-
-        for (int i = 0; i < inputValue.length; i++) {
-            System.out.printf("%d월은 %d일까지 있습니다. \n", inputValue[i], maxDayOfMonth(inputValue[i]));
-        }
-
-
-        scanner.close();
+    public int maxDayOfMonth(int year, int month) {
+        if (isLeapYear(year))
+            return LEAP_MAX_DAYS[month - 1];
+        else
+            return MAX_DAYS[month - 1];
     }
+
+    public void printCalendar(int year, int month) {
+
+        int maxDay = maxDayOfMonth(year, month);
+
+
+        System.out.printf("      <<%4d,%3d>>\n", year, month);
+        System.out.println("  일   월   화   수   목   금   토");
+        System.out.println("-----------------------");
+        for (int i = 1; i <= maxDay; i++) {
+            System.out.printf("%4d", i);
+            if (i % 7 == 0) {
+                System.out.println();
+            }
+        }
+        System.out.println();
+
+//        System.out.println(" 1  2  3  4  5  6  7");
+//        System.out.println(" 8  9 10 11 12 13 14");
+//        System.out.println("15 16 17 18 19 20 21");
+//        System.out.println("22 23 24 25 26 27 28");
+
+    }
+
 }
