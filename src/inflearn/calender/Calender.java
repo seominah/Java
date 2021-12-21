@@ -3,7 +3,7 @@ package inflearn.calender;
 import java.util.Scanner;
 
 public class Calender {
-    public static int maxDayOfMonth (int month) {
+    public static int maxDayOfMonth(int month) {
         int[] months = new int[12];
 
         for (int i = 0; i < 7; i++) {
@@ -36,10 +36,20 @@ public class Calender {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("달을 입력하세요.");
-        int month = scanner.nextInt();
+        System.out.println("반복횟수를 입력하세요.");
+        int repeat = scanner.nextInt();
+        int[] inputValue = new int[repeat];
 
-        System.out.printf("%d월은 %d일까지 있습니다.", month, maxDayOfMonth(month));
+        System.out.println("월을 입력하세요.");
+        for (int i = 0; i < repeat; i++) {
+            inputValue[i] = scanner.nextInt();
+        }
+
+        for (int i = 0; i < inputValue.length; i++) {
+            System.out.printf("%d월은 %d일까지 있습니다. \n", inputValue[i], maxDayOfMonth(inputValue[i]));
+        }
+
+
         scanner.close();
     }
 }
