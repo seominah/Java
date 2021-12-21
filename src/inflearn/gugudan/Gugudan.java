@@ -1,4 +1,4 @@
-package inflearn;
+package inflearn.gugudan;
 
 import java.util.Scanner;
 

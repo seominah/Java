@@ -1,4 +1,4 @@
-package inflearn;
+package inflearn.gugudan;
 
 public class MethodGugudan {
     // 구구단 계산 결과를 배열에 담는 메소드
