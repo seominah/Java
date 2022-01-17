@@ -6,8 +6,8 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class Prompt {
-    private final static String PROMPT = "> ";
-    private final static String[] WEEKDAYS = {"su", "mo", "tu", "wd", "th", "fr", "sa"};
+    private static final String PROMPT = "> ";
+    private static final String[] WEEKDAYS = {"su", "mo", "tu", "wd", "th", "fr", "sa"};
 
     public void printMenu() {
         System.out.println("+----------------------+");
