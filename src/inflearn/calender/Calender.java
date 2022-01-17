@@ -1,10 +1,29 @@
 package inflearn.calender;
 
-import java.util.Scanner;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Calender {
     private final static int[] MAX_DAYS = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private final static int[] LEAP_MAX_DAYS = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    private HashMap<Date, PlanItem> planMap;
+
+    public Calender() {
+        planMap = new HashMap<Date, PlanItem>();
+    }
+
+    // date : "2022-01-20"
+    public void registerPlan(String strDate, String plan){
+        PlanItem p = new PlanItem(strDate, plan);
+        planMap.put(p.getDate(), p);
+    }
+
+    public PlanItem searchPlan(String strDate){
+        Date date = PlanItem.getDateFromString(strDate);
+        return planMap.get(date);
+    }
 
     public boolean isLeapYear(int year) {
         if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
@@ -54,10 +73,10 @@ public class Calender {
 
     }
 
-    private int getWeekDay(int year, int month, int day) {
+    public int getWeekDay(int year, int month, int day) {
         // 1970.Jan.1st.Thursday
         int standardYear = 1970;
-        final int STANDARD_WEEKDAY = 3;
+        final int STANDARD_WEEKDAY = 4;
 
         int count = 0;
 
@@ -71,10 +90,19 @@ public class Calender {
             count += delta;
         }
 
-        count += day;
+        count += day - 1;
 
         int weekDay = (count + STANDARD_WEEKDAY) % 7;
 
         return weekDay;
     }
+
+    // simple test code
+    public static void main(String[] args) throws ParseException {
+        Calender cal = new Calender();
+
+        cal.registerPlan("2017-06-23", "Study");
+        System.out.println(cal.searchPlan("2017-06-23").equals("Study"));
+    }
+
 }
