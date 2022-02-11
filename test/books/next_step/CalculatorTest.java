@@ -9,24 +9,24 @@ class CalculatorTest {
     @Test
     void add() {
         Calculator cal = new Calculator();
-        System.out.println(cal.add(5, 3));
+        assertEquals(5, cal.add(2, 3));
     }
 
     @Test
     void subtract() {
         Calculator cal = new Calculator();
-        System.out.println(cal.subtract(10, 4));
+        assertEquals(3, cal.subtract(6,3));
     }
 
     @Test
     void multiply() {
         Calculator cal = new Calculator();
-        System.out.println(cal.multiply(2, 5));
+        assertEquals(10, cal.multiply(2, 5));
     }
 
     @Test
     void divide() {
         Calculator cal = new Calculator();
-        System.out.println(cal.multiply(12, 3));
+        assertEquals(4, cal.divide(12, 3));
     }
 }
